@@ -1,0 +1,40 @@
+package com.crudexample.ticket.crudDemoticket.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.crudexample.ticket.crudDemoticket.entity.Ticket;
+import com.crudexample.ticket.crudDemoticket.service.TicketService;
+
+@RestController
+
+public class TicketController 
+{
+	@Autowired
+	private TicketService service;
+	
+	
+	@PostMapping("/addTickets")
+    public List<Ticket> addTickets(@RequestBody List<Ticket> tickets)
+	{
+        return service.saveProducts(tickets);
+	}
+
+    @GetMapping("/tickets")
+    public List<Ticket> findAllTicket() 
+    {
+        return service.getTickets();
+    }
+    
+    @GetMapping("/ticketById/{id}")
+    public Ticket findTicketById(@PathVariable int id) {
+        return service.getTicketById(id);
+    }
+
+}

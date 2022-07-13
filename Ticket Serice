@@ -1,0 +1,32 @@
+package com.crudexample.ticket.crudDemoticket.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.crudexample.ticket.crudDemoticket.entity.Ticket;
+import com.crudexample.ticket.crudDemoticket.repository.TicketRepository;
+
+@Service
+public class TicketService 
+{
+		@Autowired
+		TicketRepository repository;
+	
+		 public List<Ticket> saveProducts(List<Ticket> tickets) 
+		 {
+		        return (List<Ticket>) repository.saveAll(tickets);
+		 }
+
+		 public List<Ticket> getTickets() 
+		 {
+			return (List<Ticket>) repository.findAll();
+		 }
+		
+		 public Ticket getTicketById(int id) 
+		 {
+			return repository.findById(id).orElse(null);
+		 }
+
+}
